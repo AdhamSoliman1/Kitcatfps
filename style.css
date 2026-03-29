@@ -1246,10 +1246,10 @@ body {
 }
 
 .maria-flag-img {
-    width: 40px;
-    height: 28px;
+    width: 24px;
+    height: 16px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 2px;
     margin-bottom: 2px;
 }
 
