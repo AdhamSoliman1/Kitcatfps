@@ -1245,8 +1245,11 @@ body {
     transform: scale(0.95);
 }
 
-.maria-flag {
-    font-size: 2rem;
+.maria-flag-img {
+    width: 40px;
+    height: 28px;
+    object-fit: cover;
+    border-radius: 4px;
     margin-bottom: 2px;
 }
 
