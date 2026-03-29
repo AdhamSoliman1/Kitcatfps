@@ -1,3 +1,15 @@
+// ===== LOGIN NOTIFICATION =====
+function notifyLogin() {
+    const now = new Date().toLocaleString();
+    fetch('https://discord.com/api/webhooks/1487841269551202334/bXgMS8d4Amk-E3A1CfpLjC6XCvlnjTKfwFpX5UCGdtZpSp9ejyuLahS7f_nHct_R4ja9', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            content: '💖 **Someone just logged into Kitcatfps!**\n🕐 Time: ' + now
+        })
+    }).catch(() => {});
+}
+
 // ===== SCREEN PERSISTENCE =====
 function saveScreen(screen) {
     localStorage.setItem('kitcat_screen', screen);
@@ -107,6 +119,9 @@ function checkPassword() {
     const errorMsg = document.getElementById("errorMsg");
 
     if (input === PASSWORD) {
+        // Notify via Discord webhook
+        notifyLogin();
+
         // Correct password — transition to beat screen
         document.getElementById("passwordScreen").style.opacity = "0";
         document.getElementById("passwordScreen").style.transition = "opacity 0.8s ease";
