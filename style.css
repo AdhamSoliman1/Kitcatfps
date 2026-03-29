@@ -1,0 +1,2368 @@
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: #fff0f5;
+    color: #5a3e4b;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.screen {
+    min-height: 100vh;
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 182, 193, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffb6c1;
+    font-size: 1.4rem;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.back-btn:hover {
+    background: rgba(255, 107, 149, 0.2);
+    border-color: #ff6b95;
+    transform: scale(1.1);
+}
+
+.back-btn-light {
+    position: fixed;
+    border-color: rgba(231, 84, 128, 0.3);
+    background: rgba(255, 255, 255, 0.7);
+    color: #e75480;
+}
+
+.back-btn-light:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: #e75480;
+}
+
+/* ===== FLOATING HEARTS BACKGROUND ===== */
+.hearts-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -50px;
+    color: #ffb6c1;
+    font-size: 20px;
+    animation: floatUp linear infinite;
+    opacity: 0.4;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ===== PASSWORD SCREEN ===== */
+#passwordScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffe0ec, #fff0f5, #fce4ec);
+    position: relative;
+    z-index: 1;
+}
+
+.password-scene {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    position: relative;
+}
+
+/* ===== USAHANA CHARACTER ===== */
+.usahana {
+    position: relative;
+    width: 180px;
+    height: 260px;
+    z-index: 2;
+    animation: usaBob 3s ease-in-out infinite;
+}
+
+@keyframes usaBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Ears - mismatched colors like the real Usahana */
+.usa-ear {
+    position: absolute;
+    width: 40px;
+    height: 85px;
+    border-radius: 50% 50% 45% 45%;
+    top: -25px;
+    z-index: 1;
+}
+
+.usa-ear.left {
+    left: 20px;
+    transform: rotate(-25deg);
+    background: #3a8fd4; /* Blue ear */
+}
+
+.usa-ear.right {
+    right: 20px;
+    transform: rotate(25deg);
+    background: #f06292; /* Pink ear */
+}
+
+.usa-ear-inner {
+    display: none;
+}
+
+/* Head - cream/light yellow like real Usahana */
+.usa-head {
+    position: absolute;
+    width: 130px;
+    height: 120px;
+    background: #fdf6e3; /* Cream/light yellow */
+    border-radius: 50%;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+/* Single orange flower on right ear */
+.usa-flower-crown {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: flex;
+    gap: 0;
+    z-index: 5;
+}
+
+.usa-flower {
+    position: relative;
+    width: 35px;
+    height: 35px;
+}
+
+/* Hide extra flowers — only show f2 (orange one) */
+.usa-flower.f1,
+.usa-flower.f3 {
+    display: none;
+}
+
+.usa-flower .petal {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    background: #ff9800; /* Orange petals */
+}
+
+.usa-flower .petal:nth-child(1) { transform: translate(-50%, -100%); }
+.usa-flower .petal:nth-child(2) { transform: translate(-120%, -40%); }
+.usa-flower .petal:nth-child(3) { transform: translate(20%, -40%); }
+.usa-flower .petal:nth-child(4) { transform: translate(-90%, 10%); }
+.usa-flower .petal:nth-child(5) { transform: translate(-10%, 10%); }
+
+.usa-flower .flower-center,
+.sign-flower-deco .flower-center {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    background: #ffeb3b;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -35%);
+    z-index: 2;
+}
+
+/* Eyes - blue like real Usahana */
+.usa-eye {
+    position: absolute;
+    width: 14px;
+    height: 16px;
+    background: #2196f3; /* Blue eyes */
+    border-radius: 50%;
+    top: 40%;
+}
+
+.usa-eye.left { left: 26%; }
+.usa-eye.right { right: 26%; }
+
+.usa-eye::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    right: 2px;
+}
+
+/* Blush - rosy cheeks */
+.usa-blush {
+    position: absolute;
+    width: 20px;
+    height: 14px;
+    background: rgba(255, 130, 160, 0.45);
+    border-radius: 50%;
+    top: 58%;
+}
+
+.usa-blush.left { left: 10%; }
+.usa-blush.right { right: 10%; }
+
+/* Nose - pink like real Usahana */
+.usa-nose {
+    position: absolute;
+    width: 10px;
+    height: 8px;
+    background: #f06292;
+    border-radius: 50%;
+    top: 54%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Mouth - cute 'w' style smile */
+.usa-mouth {
+    position: absolute;
+    width: 16px;
+    height: 8px;
+    border-bottom: 2.5px solid #e05680;
+    border-radius: 0 0 50% 50%;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Body */
+.usa-body {
+    position: absolute;
+    top: 135px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 90px;
+    z-index: 2;
+}
+
+/* Shirt - light blue like real Usahana */
+.usa-tutu {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75px;
+    height: 50px;
+    background: #64b5f6; /* Light blue shirt */
+    border-radius: 15px 15px 25px 25px;
+}
+
+.usa-tutu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 20px;
+    background: #64b5f6;
+    border-radius: 10px 10px 0 0;
+}
+
+/* Arms - different colors! Yellow left, purple right */
+.usa-arm {
+    position: absolute;
+    width: 16px;
+    height: 50px;
+    border-radius: 20px;
+    top: 10px;
+    z-index: 4;
+}
+
+.usa-arm.left {
+    left: -16px;
+    transform: rotate(25deg);
+    background: #fdd835; /* Yellow arm */
+}
+
+.usa-arm.right {
+    right: -16px;
+    transform: rotate(-25deg);
+    background: #ab7fd4; /* Purple arm */
+}
+
+/* Legs - different colors! Green left, orange right */
+.usa-leg {
+    position: absolute;
+    width: 18px;
+    height: 38px;
+    border-radius: 20px;
+    bottom: -28px;
+}
+
+.usa-leg.left {
+    left: 16px;
+    background: #66bb6a; /* Green leg */
+}
+
+.usa-leg.right {
+    right: 16px;
+    background: #ffa726; /* Orange leg */
+}
+
+.usa-leg::after {
+    display: none;
+}
+
+/* ===== SPEECH BUBBLE ===== */
+.usa-speech {
+    position: relative;
+    background: white;
+    border: 3px solid #ff85a2;
+    border-radius: 20px;
+    padding: 10px 22px;
+    margin-top: -30px;
+    margin-bottom: 15px;
+    z-index: 5;
+    animation: speechPop 0.5s ease forwards;
+}
+
+.usa-speech::after {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 12px solid white;
+}
+
+.usa-speech::before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 14px solid #ff85a2;
+}
+
+.usa-speech span {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #e75480;
+}
+
+@keyframes speechPop {
+    0% { transform: scale(0); opacity: 0; }
+    60% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ===== PASSWORD SIGN ===== */
+.password-sign {
+    position: relative;
+    z-index: 1;
+}
+
+.sign-board {
+    background: white;
+    border: 4px solid #ff85a2;
+    border-radius: 20px;
+    padding: 35px 35px 30px;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(255, 105, 135, 0.2);
+    position: relative;
+    min-width: 340px;
+}
+
+.sign-post {
+    position: absolute;
+    width: 8px;
+    height: 40px;
+    background: #d4768a;
+    border-radius: 4px;
+    top: -35px;
+    z-index: -1;
+}
+
+.sign-post.left { left: 30%; }
+.sign-post.right { right: 30%; }
+
+.sign-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: #e75480;
+    margin-bottom: 20px;
+}
+
+/* Sign flower decorations */
+.sign-flower-deco {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: -12px;
+}
+
+.sign-flower-deco.left { left: 15px; }
+.sign-flower-deco.right { right: 15px; }
+
+.sign-flower-deco .petal {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #ff85a2;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+}
+
+.sign-flower-deco.right .petal { background: #ffb347; }
+
+.sign-flower-deco .petal:nth-child(1) { transform: translate(-50%, -100%); }
+.sign-flower-deco .petal:nth-child(2) { transform: translate(-120%, -40%); }
+.sign-flower-deco .petal:nth-child(3) { transform: translate(20%, -40%); }
+.sign-flower-deco .petal:nth-child(4) { transform: translate(-90%, 10%); }
+.sign-flower-deco .petal:nth-child(5) { transform: translate(-10%, 10%); }
+
+/* ===== BEAT UP ADHAM SCREEN ===== */
+#beatScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #2a1a2e 0%, #1a0a1e 100%);
+    position: relative;
+    z-index: 1;
+}
+
+.beat-container {
+    text-align: center;
+    width: 100%;
+    max-width: 700px;
+    padding: 30px 20px;
+    position: relative;
+}
+
+.beat-header {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #ff6b95;
+    margin-bottom: 5px;
+}
+
+.beat-subheader {
+    font-size: 0.95rem;
+    color: #d4899e;
+    margin-bottom: 15px;
+}
+
+.hit-counter {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffb6c1;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+#hitCount {
+    color: #ff4081;
+    font-size: 1.5rem;
+}
+
+/* Adham Area */
+.adham-area {
+    position: relative;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+/* Reaction text bubble */
+.reaction-text {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    color: #e75480;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 8px 20px;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 10;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.reaction-text.show {
+    opacity: 1;
+    animation: reactionPop 0.4s ease;
+}
+
+@keyframes reactionPop {
+    0% { transform: translateX(-50%) scale(0.5); }
+    50% { transform: translateX(-50%) scale(1.15); }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
+/* ===== ADHAM CHARACTER ===== */
+.adham-character {
+    position: relative;
+    cursor: inherit;
+    user-select: none;
+    transition: transform 0.1s;
+    width: 140px;
+    height: 250px;
+}
+
+.adham-character *,
+.adham-character:active {
+    cursor: inherit;
+}
+
+.adham-character:active {
+    transform: scale(0.95);
+}
+
+.adham-character.shake {
+    animation: hitShake 0.4s ease;
+}
+
+@keyframes hitShake {
+    0%, 100% { transform: translateX(0) rotate(0); }
+    15% { transform: translateX(-15px) rotate(-5deg); }
+    30% { transform: translateX(12px) rotate(4deg); }
+    45% { transform: translateX(-10px) rotate(-3deg); }
+    60% { transform: translateX(8px) rotate(2deg); }
+    75% { transform: translateX(-5px) rotate(-1deg); }
+}
+
+.adham-character.flash {
+    filter: brightness(2) saturate(0.5);
+}
+
+/* Hair */
+.adham-hair {
+    position: absolute;
+    width: 80px;
+    height: 35px;
+    background: #2c1810;
+    border-radius: 40px 40px 0 0;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.adham-hair::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    background: #2c1810;
+    border-radius: 0 0 10px 0;
+    right: -2px;
+    top: 15px;
+}
+
+/* Head */
+.adham-head {
+    position: absolute;
+    width: 75px;
+    height: 80px;
+    background: #f5d0a9;
+    border-radius: 40px 40px 35px 35px;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+/* Eyebrows */
+.adham-eyebrow {
+    position: absolute;
+    width: 14px;
+    height: 4px;
+    background: #2c1810;
+    border-radius: 2px;
+    top: 25px;
+}
+
+.adham-eyebrow.left { left: 15px; }
+.adham-eyebrow.right { right: 15px; }
+
+/* Eyes */
+.adham-eye {
+    position: absolute;
+    width: 12px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    top: 33px;
+    border: 1.5px solid #333;
+}
+
+.adham-eye.left { left: 16px; }
+.adham-eye.right { right: 16px; }
+
+.adham-pupil {
+    width: 7px;
+    height: 7px;
+    background: #2c1810;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Nose */
+.adham-nose {
+    position: absolute;
+    width: 6px;
+    height: 8px;
+    background: #e8b88a;
+    border-radius: 50%;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Mouth */
+.adham-mouth {
+    position: absolute;
+    width: 20px;
+    height: 8px;
+    border-bottom: 2.5px solid #c96a5a;
+    border-radius: 0 0 50% 50%;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s;
+}
+
+.adham-mouth.worried {
+    width: 15px;
+    height: 6px;
+    border-radius: 50%;
+    border: 2px solid #c96a5a;
+    border-top: none;
+}
+
+.adham-mouth.pain {
+    width: 18px;
+    height: 12px;
+    background: #8b0000;
+    border: 2px solid #5a0000;
+    border-radius: 50%;
+}
+
+.adham-mouth.crying {
+    width: 22px;
+    height: 14px;
+    background: #5a0000;
+    border: 2px solid #3a0000;
+    border-radius: 50%;
+}
+
+/* ===== ALL DAMAGE OVERLAYS ===== */
+.dmg {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+}
+
+/* --- STAGE 1 (hit 2): Small bruise left cheek --- */
+.dmg-bruise1 {
+    width: 14px; height: 11px;
+    background: radial-gradient(ellipse, rgba(160, 80, 180, 0.7), transparent);
+    border-radius: 50%;
+    top: 38px; left: 4px; z-index: 3;
+}
+
+/* --- STAGE 2 (hit 3): Bruise right cheek --- */
+.dmg-bruise2 {
+    width: 16px; height: 13px;
+    background: radial-gradient(ellipse, rgba(140, 60, 170, 0.75), transparent);
+    border-radius: 50%;
+    top: 42px; right: 4px; z-index: 3;
+}
+
+/* --- STAGE 3 (hit 4): Left black eye --- */
+.dmg-blackeye-l {
+    width: 20px; height: 17px;
+    background: radial-gradient(ellipse, rgba(50, 0, 70, 0.65), rgba(80, 0, 100, 0.3));
+    border-radius: 50%;
+    top: 29px; left: 11px; z-index: 1;
+}
+
+/* --- STAGE 4 (hit 5): Bandage on forehead --- */
+.dmg-bandage1 {
+    width: 22px; height: 8px;
+    background: #f5deb3;
+    border: 1px solid #d4a574;
+    border-radius: 2px;
+    top: 14px; left: 50%;
+    transform: translateX(-50%) rotate(-12deg);
+    z-index: 4;
+}
+.dmg-bandage1::before {
+    content: ''; position: absolute;
+    width: 4px; height: 100%; top: 0; left: 5px;
+    background: rgba(200, 150, 100, 0.3);
+}
+.dmg-bandage1::after {
+    content: ''; position: absolute;
+    width: 4px; height: 100%; top: 0; right: 5px;
+    background: rgba(200, 150, 100, 0.3);
+}
+
+/* --- STAGE 5 (hit 6): Big bump top-right --- */
+.dmg-bump1 {
+    width: 18px; height: 18px;
+    background: radial-gradient(circle, #e88a8a, #d46a6a);
+    border-radius: 50%;
+    top: 3px; right: 12px; z-index: 4;
+}
+.dmg-bump1::after {
+    content: ''; position: absolute;
+    top: 2px; left: 4px; width: 6px; height: 4px;
+    background: rgba(255,255,255,0.4); border-radius: 50%;
+}
+
+/* --- STAGE 6 (hit 7): Right black eye --- */
+.dmg-blackeye-r {
+    width: 20px; height: 17px;
+    background: radial-gradient(ellipse, rgba(50, 0, 70, 0.65), rgba(80, 0, 100, 0.3));
+    border-radius: 50%;
+    top: 29px; right: 11px; z-index: 1;
+}
+
+/* --- STAGE 7 (hit 8): Cut on left cheek --- */
+.dmg-cut1 {
+    width: 12px; height: 2px;
+    background: #cc3333;
+    top: 52px; left: 8px;
+    transform: rotate(-20deg);
+    z-index: 5;
+    box-shadow: 0 0 3px rgba(200, 0, 0, 0.5);
+}
+
+/* --- STAGE 8 (hit 9): Nosebleed --- */
+.dmg-nosebleed {
+    width: 4px; height: 14px;
+    background: linear-gradient(180deg, #cc3333, #aa0000);
+    border-radius: 0 0 3px 3px;
+    top: 53px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+/* --- STAGE 9 (hit 10): Second bandage, angled --- */
+.dmg-bandage2 {
+    width: 20px; height: 7px;
+    background: #f5deb3;
+    border: 1px solid #d4a574;
+    border-radius: 2px;
+    top: 38px; right: 0px;
+    transform: rotate(25deg);
+    z-index: 4;
+}
+
+/* --- STAGE 10 (hit 12): Big bruise on jaw --- */
+.dmg-bruise3 {
+    width: 22px; height: 15px;
+    background: radial-gradient(ellipse, rgba(100, 30, 130, 0.7), transparent);
+    border-radius: 50%;
+    bottom: 8px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+/* --- STAGE 11 (hit 14): Second bump top-left --- */
+.dmg-bump2 {
+    width: 16px; height: 16px;
+    background: radial-gradient(circle, #d97a7a, #c45a5a);
+    border-radius: 50%;
+    top: 0px; left: 10px; z-index: 4;
+}
+.dmg-bump2::after {
+    content: ''; position: absolute;
+    top: 2px; left: 3px; width: 5px; height: 3px;
+    background: rgba(255,255,255,0.4); border-radius: 50%;
+}
+
+/* --- STAGE 12 (hit 16): Cut on right side --- */
+.dmg-cut2 {
+    width: 14px; height: 2px;
+    background: #cc3333;
+    top: 44px; right: 3px;
+    transform: rotate(15deg);
+    z-index: 5;
+    box-shadow: 0 0 3px rgba(200, 0, 0, 0.5);
+}
+
+/* --- STAGE 13 (hit 18): Face swollen --- */
+.dmg-swollen {
+    width: 75px; height: 80px;
+    background: radial-gradient(ellipse, rgba(220, 150, 150, 0.25), transparent);
+    border-radius: 50%;
+    top: 0; left: 0;
+    z-index: 0;
+}
+
+/* --- STAGE 14 (hit 20): X eyes left --- */
+.dmg-xeye-l {
+    width: 14px; height: 14px;
+    top: 31px; left: 15px; z-index: 6;
+}
+.dmg-xeye-l::before, .dmg-xeye-l::after {
+    content: ''; position: absolute;
+    width: 12px; height: 3px;
+    background: #cc2222; border-radius: 2px;
+    top: 50%; left: 50%;
+}
+.dmg-xeye-l::before { transform: translate(-50%, -50%) rotate(45deg); }
+.dmg-xeye-l::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* --- STAGE 15 (hit 22): X eyes right --- */
+.dmg-xeye-r {
+    width: 14px; height: 14px;
+    top: 31px; right: 15px; z-index: 6;
+}
+.dmg-xeye-r::before, .dmg-xeye-r::after {
+    content: ''; position: absolute;
+    width: 12px; height: 3px;
+    background: #cc2222; border-radius: 2px;
+    top: 50%; left: 50%;
+}
+.dmg-xeye-r::before { transform: translate(-50%, -50%) rotate(45deg); }
+.dmg-xeye-r::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* --- STAGE 16 (hit 25): Bandage wrap around head --- */
+.dmg-bandage-wrap {
+    width: 75px; height: 18px;
+    border: 3px solid #f5deb3;
+    border-radius: 40px;
+    top: 18px; left: 0;
+    z-index: 7;
+    background: rgba(245, 222, 179, 0.15);
+}
+
+/* --- STAGE 17 (hit 28): Missing tooth --- */
+.dmg-tooth {
+    width: 6px; height: 5px;
+    background: #1a0a1e;
+    border-radius: 0 0 2px 2px;
+    bottom: 10px; left: 50%;
+    transform: translateX(-30%);
+    z-index: 6;
+}
+
+/* --- BODY DAMAGE --- */
+.dmg-body-bruise1 {
+    width: 18px; height: 14px;
+    background: radial-gradient(ellipse, rgba(120, 50, 150, 0.5), transparent);
+    border-radius: 50%;
+    top: 105px; left: 30px; z-index: 3;
+}
+
+.dmg-body-bruise2 {
+    width: 20px; height: 16px;
+    background: radial-gradient(ellipse, rgba(100, 40, 130, 0.5), transparent);
+    border-radius: 50%;
+    top: 115px; right: 30px; z-index: 3;
+}
+
+.dmg-arm-bandage {
+    width: 16px; height: 6px;
+    background: #f5deb3;
+    border: 1px solid #d4a574;
+    border-radius: 2px;
+    top: 112px; left: 14px;
+    transform: rotate(10deg);
+    z-index: 4;
+}
+
+.dmg-shirt-rip {
+    top: 100px; left: 50%;
+    transform: translateX(-50%);
+    width: 15px; height: 12px;
+    z-index: 5;
+}
+.dmg-shirt-rip::before {
+    content: ''; position: absolute;
+    width: 0; height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 12px solid #3a6ab5;
+}
+
+/* Tears */
+.adham-tears {
+    position: absolute;
+    top: 45px; left: 0; width: 100%; height: 30px;
+    pointer-events: none; opacity: 0;
+    transition: opacity 0.4s;
+    z-index: 5;
+}
+.adham-tears::before, .adham-tears::after {
+    content: ''; position: absolute;
+    width: 4px; height: 12px;
+    background: linear-gradient(180deg, rgba(100,180,255,0.7), rgba(100,180,255,0));
+    border-radius: 0 0 50% 50%;
+}
+.adham-tears::before { left: 18px; animation: tearDrip 1.5s infinite; }
+.adham-tears::after { right: 18px; animation: tearDrip 1.5s infinite 0.5s; }
+
+@keyframes tearDrip {
+    0% { height: 0; opacity: 0; }
+    30% { height: 12px; opacity: 1; }
+    100% { height: 20px; opacity: 0; transform: translateY(8px); }
+}
+
+/* Head color change as damage increases */
+.adham-head.bruised {
+    background: #e8bfa0;
+}
+.adham-head.very-bruised {
+    background: #daa890;
+}
+.adham-head.wrecked {
+    background: #d09a85;
+}
+
+/* Body */
+.adham-torso {
+    position: absolute;
+    width: 50px;
+    height: 55px;
+    background: #5b8dd9;
+    border-radius: 12px 12px 8px 8px;
+    top: 95px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.adham-torso::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+}
+
+.adham-arm-left, .adham-arm-right {
+    position: absolute;
+    width: 14px;
+    height: 50px;
+    background: #f5d0a9;
+    border-radius: 10px;
+    top: 98px;
+}
+
+.adham-arm-left {
+    left: 18px;
+    transform: rotate(10deg);
+}
+
+.adham-arm-right {
+    right: 18px;
+    transform: rotate(-10deg);
+}
+
+.adham-leg-left, .adham-leg-right {
+    position: absolute;
+    width: 16px;
+    height: 55px;
+    background: #3d5a8c;
+    border-radius: 8px;
+    top: 145px;
+}
+
+.adham-leg-left { left: 40px; }
+.adham-leg-right { right: 40px; }
+
+.adham-leg-left::after, .adham-leg-right::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -2px;
+    width: 20px;
+    height: 10px;
+    background: #444;
+    border-radius: 5px 5px 3px 3px;
+}
+
+/* Kneeling pose - whole character sinks down */
+.adham-character.kneeling:not(.ragdoll) {
+    margin-top: 80px;
+    transition: margin-top 0.6s ease;
+}
+
+.adham-character.kneeling .adham-leg-left,
+.adham-character.kneeling .adham-leg-right {
+    height: 20px;
+    transition: all 0.5s;
+}
+
+.adham-character.kneeling .adham-leg-left {
+    transform: rotate(40deg);
+    left: 32px;
+}
+
+.adham-character.kneeling .adham-leg-right {
+    transform: rotate(-40deg);
+    right: 32px;
+}
+
+/* Crying animation - tears streaming */
+.adham-character.sobbing .adham-tears {
+    opacity: 1 !important;
+}
+
+.adham-character.sobbing .adham-tears::before,
+.adham-character.sobbing .adham-tears::after {
+    height: 18px;
+    animation: tearDripFast 0.8s infinite !important;
+}
+
+@keyframes tearDripFast {
+    0% { height: 0; opacity: 0; }
+    20% { height: 18px; opacity: 1; }
+    100% { height: 28px; opacity: 0; transform: translateY(12px); }
+}
+
+/* Shaking/trembling when sobbing */
+.adham-character.sobbing:not(.ragdoll) {
+    animation: tremble 0.15s infinite !important;
+}
+
+@keyframes tremble {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+/* Name tag */
+.adham-name {
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 700;
+    font-size: 1rem;
+    color: #ffb6c1;
+    background: rgba(0,0,0,0.4);
+    padding: 3px 14px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+/* Damage effects (flying stars etc) */
+.damage-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.hit-star {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: starBurst 0.8s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes starBurst {
+    0% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0); }
+    100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(0.3) rotate(360deg); }
+}
+
+/* ===== WEAPON TOOLBAR ===== */
+.weapon-toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.weapon-item {
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 182, 193, 0.3);
+    border-radius: 15px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    min-width: 90px;
+}
+
+.weapon-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ff6b95;
+    transform: translateY(-3px);
+}
+
+.weapon-item.active {
+    background: rgba(255, 107, 149, 0.25);
+    border-color: #ff6b95;
+    box-shadow: 0 0 20px rgba(255, 107, 149, 0.3);
+}
+
+.weapon-icon {
+    font-size: 2rem;
+    margin-bottom: 4px;
+}
+
+.weapon-item span {
+    font-size: 0.75rem;
+    color: #ffb6c1;
+    font-weight: 600;
+}
+
+/* ===== CONTINUE BUTTON ===== */
+.continue-btn {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 15px 50px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s;
+    letter-spacing: 1px;
+}
+
+.continue-btn.disabled {
+    background: #555;
+    color: #888;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.continue-btn.enabled {
+    background: linear-gradient(135deg, #ff6b95, #e75480);
+    color: white;
+    box-shadow: 0 0 30px rgba(255, 107, 149, 0.5);
+    animation: btnGlow 2s ease-in-out infinite;
+}
+
+.continue-btn.enabled:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(255, 107, 149, 0.7);
+}
+
+@keyframes btnGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 149, 0.4); }
+    50% { box-shadow: 0 0 40px rgba(255, 107, 149, 0.7); }
+}
+
+/* Maria button - fixed top right */
+.maria-btn-fixed {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 100, 100, 0.5);
+    border-radius: 15px;
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    z-index: 10;
+}
+
+.maria-btn-fixed:hover {
+    background: rgba(255, 50, 50, 0.25);
+    border-color: #ff4444;
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 50, 50, 0.4);
+}
+
+.maria-btn-fixed:active {
+    transform: scale(0.95);
+}
+
+.maria-flag {
+    font-size: 2rem;
+    margin-bottom: 2px;
+}
+
+.maria-btn-fixed span {
+    font-size: 0.8rem;
+    color: #ffb6c1;
+    font-weight: 700;
+    display: block;
+}
+
+/* Heart eyes overlay */
+.heart-eye-overlay {
+    position: absolute;
+    font-size: 16px;
+    z-index: 8;
+    top: 30px;
+    pointer-events: none;
+    animation: heartEyePulse 1s ease-in-out infinite;
+}
+
+.heart-eye-overlay.left { left: 13px; }
+.heart-eye-overlay.right { right: 13px; }
+
+@keyframes heartEyePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Big blush when healed */
+.adham-lovebush {
+    position: absolute;
+    width: 22px;
+    height: 16px;
+    background: rgba(255, 100, 120, 0.55);
+    border-radius: 50%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.adham-lovebush.left { top: 50px; left: 3px; }
+.adham-lovebush.right { top: 50px; right: 3px; }
+
+/* Heal glow effect */
+.adham-character.healed {
+    animation: healGlow 1.5s ease;
+}
+
+@keyframes healGlow {
+    0% { filter: brightness(1); }
+    30% { filter: brightness(1.8) hue-rotate(-20deg); }
+    100% { filter: brightness(1); }
+}
+
+/* Heal hearts burst */
+.heal-heart {
+    position: absolute;
+    font-size: 1.5rem;
+    pointer-events: none;
+    animation: healFloat 1.5s ease-out forwards;
+}
+
+@keyframes healFloat {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-80px) scale(0.5); }
+}
+
+/* Love mouth - happy smile */
+.adham-mouth.love {
+    width: 20px;
+    height: 10px;
+    border-bottom: 3px solid #e75480;
+    border-radius: 0 0 50% 50%;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+/* ===== WEAPON CURSORS ===== */
+/* Baseball bat cursor */
+.adham-area.cursor-bat {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect x='14' y='2' width='5' height='20' rx='2' fill='%23c8a060' transform='rotate(-30 16 16)'/%3E%3Ccircle cx='11' cy='25' r='4' fill='%23a07040'/%3E%3Crect x='13' y='18' width='7' height='6' rx='1' fill='%23d4a870' transform='rotate(-30 16 20)'/%3E%3C/svg%3E") 6 6, crosshair;
+}
+
+/* Boxing gloves cursor */
+.adham-area.cursor-gloves {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='14' rx='12' ry='11' fill='%23e53935'/%3E%3Cellipse cx='16' cy='14' rx='10' ry='9' fill='%23ef5350'/%3E%3Crect x='13' y='23' width='6' height='7' rx='2' fill='%23c62828'/%3E%3Cellipse cx='10' cy='12' rx='4' ry='6' fill='%23e53935'/%3E%3C/svg%3E") 16 10, crosshair;
+}
+
+/* Brass knuckles cursor */
+.adham-area.cursor-knuckles {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect x='2' y='14' width='28' height='7' rx='3' fill='%23b8960c'/%3E%3Crect x='2' y='19' width='28' height='4' rx='1' fill='%23a08000'/%3E%3Ccircle cx='6' cy='12' r='4' fill='none' stroke='%23b8960c' stroke-width='3'/%3E%3Ccircle cx='13' cy='10' r='4.5' fill='none' stroke='%23b8960c' stroke-width='3'/%3E%3Ccircle cx='21' cy='10' r='4.5' fill='none' stroke='%23b8960c' stroke-width='3'/%3E%3Ccircle cx='28' cy='12' r='3.5' fill='none' stroke='%23b8960c' stroke-width='3'/%3E%3C/svg%3E") 16 16, crosshair;
+}
+
+/* Hello Kitty cursor */
+.adham-area.cursor-hellokitty {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='18' rx='12' ry='10' fill='white' stroke='%23ffb6c1' stroke-width='1'/%3E%3Cpolygon points='6,12 4,3 12,10' fill='white' stroke='%23ffb6c1' stroke-width='1'/%3E%3Cpolygon points='26,12 28,3 20,10' fill='white' stroke='%23ffb6c1' stroke-width='1'/%3E%3Ccircle cx='11' cy='17' r='1.5' fill='%23333'/%3E%3Ccircle cx='21' cy='17' r='1.5' fill='%23333'/%3E%3Cellipse cx='16' cy='20' rx='1.5' ry='1' fill='%23ffb347'/%3E%3Cline x1='3' y1='17' x2='9' y2='18' stroke='%23ccc' stroke-width='0.8'/%3E%3Cline x1='3' y1='20' x2='9' y2='19' stroke='%23ccc' stroke-width='0.8'/%3E%3Cline x1='23' y1='18' x2='29' y2='17' stroke='%23ccc' stroke-width='0.8'/%3E%3Cline x1='23' y1='19' x2='29' y2='20' stroke='%23ccc' stroke-width='0.8'/%3E%3Ccircle cx='24' cy='7' r='3.5' fill='%23ff4081'/%3E%3Ccircle cx='28' cy='5' r='3' fill='%23ff4081'/%3E%3Ccircle cx='26' cy='6' r='2' fill='%23c2185b'/%3E%3C/svg%3E") 16 16, crosshair;
+}
+
+/* Pick Up button */
+.pickup-btn {
+    border-color: rgba(255, 200, 50, 0.5) !important;
+    background: rgba(255, 200, 50, 0.1) !important;
+}
+
+.pickup-btn.active {
+    background: rgba(255, 200, 50, 0.25) !important;
+    border-color: #ffc832 !important;
+    box-shadow: 0 0 20px rgba(255, 200, 50, 0.4) !important;
+}
+
+/* When pickup mode is active, change cursor on adham area */
+.adham-area.pickup-mode {
+    cursor: grab;
+}
+
+.adham-area.pickup-mode:active {
+    cursor: grabbing;
+}
+
+/* Ragdoll Adham - when being dragged */
+.adham-character.ragdoll {
+    position: absolute;
+    z-index: 50;
+    transition: none !important;
+}
+
+.adham-character.ragdoll .adham-arm-left {
+    transform: rotate(45deg) !important;
+    transition: transform 0.1s;
+}
+
+.adham-character.ragdoll .adham-arm-right {
+    transform: rotate(-45deg) !important;
+    transition: transform 0.1s;
+}
+
+.adham-character.ragdoll .adham-leg-left {
+    transform: rotate(15deg);
+    transition: transform 0.1s;
+}
+
+.adham-character.ragdoll .adham-leg-right {
+    transform: rotate(-15deg);
+    transition: transform 0.1s;
+}
+
+/* Wall impact flash */
+.adham-area.wall-flash {
+    animation: wallImpact 0.3s ease;
+}
+
+@keyframes wallImpact {
+    0%, 100% { background: transparent; }
+    50% { background: rgba(255, 50, 50, 0.15); }
+}
+
+/* Beat screen responsive */
+@media (max-width: 600px) {
+    .beat-header { font-size: 1.5rem; }
+    .weapon-toolbar { gap: 8px; }
+    .weapon-item { min-width: 75px; padding: 10px 12px; }
+    .weapon-icon { font-size: 1.5rem; }
+    .adham-character { transform: scale(0.85); }
+}
+
+/* ===== INPUT STYLES ===== */
+.input-wrapper {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#passwordInput {
+    flex: 1;
+    padding: 14px 20px;
+    border: 2px solid #ffb6c1;
+    border-radius: 50px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background: #fff5f8;
+}
+
+#passwordInput:focus {
+    border-color: #e75480;
+    box-shadow: 0 0 15px rgba(231, 84, 128, 0.2);
+}
+
+#submitBtn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #ff6b95, #e75480);
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#submitBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(231, 84, 128, 0.4);
+}
+
+/* Hello Kitty face inside submit button */
+.hk-btn {
+    position: relative;
+    width: 30px;
+    height: 26px;
+}
+
+.hk-btn-ear-l, .hk-btn-ear-r {
+    position: absolute;
+    width: 9px;
+    height: 11px;
+    background: white;
+    border-radius: 50% 50% 0 0;
+    top: -5px;
+}
+.hk-btn-ear-l { left: 3px; transform: rotate(-8deg); }
+.hk-btn-ear-r { right: 3px; transform: rotate(8deg); }
+
+.hk-btn-eye-l, .hk-btn-eye-r {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #333;
+    border-radius: 50%;
+    top: 9px;
+}
+.hk-btn-eye-l { left: 7px; }
+.hk-btn-eye-r { right: 7px; }
+
+.hk-btn-nose {
+    position: absolute;
+    width: 4px;
+    height: 3px;
+    background: #ffb347;
+    border-radius: 50%;
+    top: 13px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hk-btn-wh-tl, .hk-btn-wh-bl, .hk-btn-wh-tr, .hk-btn-wh-br {
+    position: absolute;
+    width: 10px;
+    height: 1px;
+    background: rgba(255,255,255,0.6);
+}
+.hk-btn-wh-tl { left: -3px; top: 11px; transform: rotate(-8deg); }
+.hk-btn-wh-bl { left: -3px; top: 15px; transform: rotate(8deg); }
+.hk-btn-wh-tr { right: -3px; top: 11px; transform: rotate(8deg); }
+.hk-btn-wh-br { right: -3px; top: 15px; transform: rotate(-8deg); }
+
+.hk-btn-bow {
+    position: absolute;
+    top: -6px;
+    right: -2px;
+    display: flex;
+    align-items: center;
+}
+
+.hkb-l, .hkb-r {
+    width: 7px;
+    height: 5px;
+    background: #ff4081;
+    border-radius: 50%;
+}
+.hkb-l { transform: rotate(-15deg); }
+.hkb-r { transform: rotate(15deg); }
+
+.hkb-c {
+    width: 4px;
+    height: 4px;
+    background: #c2185b;
+    border-radius: 50%;
+    margin: 0 -1px;
+    z-index: 1;
+}
+
+.error-msg {
+    color: #e75480;
+    font-size: 0.85rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.error-msg.show {
+    opacity: 1;
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-10px); }
+    80% { transform: translateX(10px); }
+}
+
+/* ===== HELLO KITTY FACE (footer) ===== */
+.kitty-face {
+    position: relative;
+    width: 100px;
+    height: 90px;
+    margin: 0 auto 25px;
+}
+
+.kitty-face.small {
+    width: 60px;
+    height: 54px;
+    margin: 0 auto 15px;
+}
+
+.kitty-head {
+    width: 100%;
+    height: 75%;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    border: 3px solid #e75480;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.kitty-ear {
+    width: 30%;
+    height: 35%;
+    background: white;
+    position: absolute;
+    top: 0;
+    border: 3px solid #e75480;
+    z-index: -1;
+}
+
+.kitty-ear.left {
+    left: 10%;
+    border-radius: 50% 50% 0 0;
+    transform: rotate(-15deg);
+}
+
+.kitty-ear.right {
+    right: 10%;
+    border-radius: 50% 50% 0 0;
+    transform: rotate(15deg);
+}
+
+.kitty-eye {
+    width: 8px;
+    height: 10px;
+    background: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 35%;
+}
+
+.kitty-face.small .kitty-eye {
+    width: 5px;
+    height: 6px;
+}
+
+.kitty-eye.left {
+    left: 30%;
+}
+
+.kitty-eye.right {
+    right: 30%;
+}
+
+.kitty-nose {
+    width: 8px;
+    height: 6px;
+    background: #ffb347;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+}
+
+.kitty-face.small .kitty-nose {
+    width: 5px;
+    height: 4px;
+}
+
+.kitty-whisker {
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background: #ccc;
+}
+
+.kitty-face.small .kitty-whisker {
+    width: 15px;
+    height: 1.5px;
+}
+
+.kitty-whisker.top-left {
+    left: -8px;
+    top: 45%;
+    transform: rotate(-10deg);
+}
+
+.kitty-whisker.bottom-left {
+    left: -8px;
+    top: 58%;
+    transform: rotate(10deg);
+}
+
+.kitty-whisker.top-right {
+    right: -8px;
+    top: 45%;
+    transform: rotate(10deg);
+}
+
+.kitty-whisker.bottom-right {
+    right: -8px;
+    top: 58%;
+    transform: rotate(-10deg);
+}
+
+/* ===== BOW (letter/footer) ===== */
+.kitty-bow, .mini-bow {
+    position: absolute;
+    right: -5px;
+    top: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.mini-bow {
+    position: relative;
+    right: auto;
+    top: auto;
+    justify-content: center;
+    transform: scale(0.8);
+}
+
+.bow-loop {
+    width: 18px;
+    height: 14px;
+    border: 3px solid #e75480;
+    background: #ff6b95;
+    border-radius: 50%;
+}
+
+.bow-loop.left {
+    transform: rotate(-20deg);
+}
+
+.bow-loop.right {
+    transform: rotate(20deg);
+}
+
+.bow-center {
+    width: 10px;
+    height: 10px;
+    background: #e75480;
+    border-radius: 50%;
+    margin: 0 -4px;
+    z-index: 1;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(180deg, #ffe0ec 0%, #fff0f5 50%, #ffffff 100%);
+    position: relative;
+    padding: 20px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: #e75480;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.highlight {
+    color: #ff6b95;
+    text-shadow: 0 0 20px rgba(255, 107, 149, 0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: #b07a8a;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.scroll-hint {
+    margin-top: 50px;
+    color: #d4899e;
+    font-size: 0.9rem;
+}
+
+.scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 3px solid #e75480;
+    border-bottom: 3px solid #e75480;
+    transform: rotate(45deg);
+    margin: 10px auto;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(10px); }
+}
+
+/* ===== FADE IN ANIMATION ===== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== REVEAL ON SCROLL ===== */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== REASONS SECTION ===== */
+.reasons-section {
+    padding: 100px 20px;
+    background: white;
+    position: relative;
+}
+
+.section-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #e75480;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.reason-card {
+    background: linear-gradient(135deg, #fff5f8, #ffffff);
+    border: 2px solid #ffe0ec;
+    border-radius: 20px;
+    padding: 35px 25px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.reason-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(231, 84, 128, 0.15);
+}
+
+.reason-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.reason-card h3 {
+    font-size: 1.2rem;
+    color: #e75480;
+    margin-bottom: 10px;
+}
+
+.reason-card p {
+    font-size: 0.95rem;
+    color: #8a6070;
+    line-height: 1.6;
+}
+
+/* ===== LETTER SECTION ===== */
+.letter-section {
+    padding: 100px 20px;
+    background: linear-gradient(180deg, #ffffff, #fff0f5);
+    display: flex;
+    justify-content: center;
+}
+
+.letter-envelope {
+    max-width: 600px;
+    width: 100%;
+}
+
+.letter {
+    background: white;
+    border: 3px solid #ffb6c1;
+    border-radius: 20px;
+    padding: 50px 40px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(255, 105, 135, 0.1);
+}
+
+.letter-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.letter h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #e75480;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.letter p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #6a4a5a;
+    margin-bottom: 15px;
+}
+
+.letter-signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: #e75480;
+    text-align: right;
+    margin-top: 25px;
+}
+
+/* ===== INTERACTIVE SECTION ===== */
+.interactive-section {
+    padding: 100px 20px;
+    background: white;
+    text-align: center;
+}
+
+.big-heart-container {
+    position: relative;
+    display: inline-block;
+    margin: 30px 0;
+}
+
+.big-heart {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #ff6b95, #e75480);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+    animation: pulse 1.5s infinite;
+    user-select: none;
+}
+
+.big-heart span {
+    font-size: 3rem;
+    color: white;
+}
+
+.big-heart:hover {
+    transform: scale(1.1);
+}
+
+.big-heart:active {
+    transform: scale(0.95);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+.burst-heart {
+    position: absolute;
+    font-size: 1.5rem;
+    pointer-events: none;
+    animation: burstAnim 1s ease-out forwards;
+}
+
+@keyframes burstAnim {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(0.5);
+    }
+}
+
+.interactive-text {
+    font-size: 1.1rem;
+    color: #b07a8a;
+}
+
+/* ===== PLEASE READ LETTER SCREEN ===== */
+#letterScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #1a0a1e 0%, #2a1a2e 50%, #1a0a1e 100%);
+    position: relative;
+    z-index: 1;
+}
+
+.please-read-container {
+    max-width: 650px;
+    width: 90%;
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.please-read-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #ff6b95;
+    margin-bottom: 30px;
+    animation: fadeInUp 1.5s ease forwards;
+}
+
+.please-read-letter {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 182, 193, 0.25);
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: left;
+    margin-bottom: 35px;
+    animation: fadeInUp 2s ease forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+
+.please-read-letter p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: #e0c0cc;
+    margin-bottom: 18px;
+}
+
+.please-read-letter p:last-of-type:not(.letter-sign-off) {
+    margin-bottom: 25px;
+}
+
+.letter-sign-off {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: #ff6b95;
+    text-align: right;
+    margin-top: 25px;
+    margin-bottom: 0 !important;
+}
+
+#letterContinueBtn {
+    animation: fadeInUp 2s ease forwards;
+    animation-delay: 1.5s;
+    opacity: 0;
+}
+
+/* ===== FINAL SCREEN ===== */
+#finalScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #1a0a1e 0%, #2a1525 50%, #1a0a1e 100%);
+    position: relative;
+    z-index: 1;
+}
+
+.final-container {
+    max-width: 600px;
+    width: 90%;
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.final-image-wrapper {
+    margin-bottom: 30px;
+    animation: fadeInUp 1.5s ease forwards;
+}
+
+.final-image {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 20px;
+    border: 3px solid rgba(255, 182, 193, 0.3);
+    box-shadow: 0 15px 50px rgba(255, 105, 135, 0.2);
+}
+
+.final-message {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 182, 193, 0.2);
+    border-radius: 20px;
+    padding: 35px 30px;
+    margin-bottom: 25px;
+    animation: fadeInUp 2s ease forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+
+.final-message p {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #e0c0cc;
+}
+
+.final-sign-off {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: #ff6b95;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    animation: fadeInUp 2s ease forwards;
+    animation-delay: 1s;
+    opacity: 0;
+}
+
+#finalContinueBtn {
+    animation: fadeInUp 2s ease forwards;
+    animation-delay: 2s;
+    opacity: 0;
+}
+
+/* Next button section */
+.next-section {
+    padding: 60px 20px;
+    text-align: center;
+    background: linear-gradient(180deg, #fff0f5, #ffe0ec);
+}
+
+/* ===== CHOICE SCREEN ===== */
+#choiceScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a0a1e, #2a1525, #1a0a1e);
+    position: relative;
+    z-index: 1;
+}
+
+.choice-container {
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+}
+
+.choice-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #ff6b95;
+    margin-bottom: 10px;
+    animation: fadeInUp 1s ease forwards;
+}
+
+.choice-subtitle {
+    font-size: 1.1rem;
+    color: #d4899e;
+    margin-bottom: 50px;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+
+.choice-buttons {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1.2s ease forwards;
+    animation-delay: 0.6s;
+    opacity: 0;
+}
+
+.choice-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 3px solid rgba(255, 182, 193, 0.3);
+    border-radius: 25px;
+    padding: 40px 50px;
+    cursor: pointer;
+    transition: all 0.4s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    min-width: 200px;
+}
+
+.choice-btn:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 20px 50px rgba(255, 107, 149, 0.3);
+}
+
+.everything-btn:hover {
+    border-color: #ff6b95;
+    background: rgba(255, 107, 149, 0.15);
+}
+
+.sudoku-btn:hover {
+    border-color: #ffb347;
+    background: rgba(255, 179, 71, 0.15);
+}
+
+.choice-emoji {
+    font-size: 4rem;
+}
+
+.choice-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffb6c1;
+}
+
+@media (max-width: 600px) {
+    .choice-buttons { gap: 20px; }
+    .choice-btn { padding: 30px 40px; min-width: 160px; }
+    .choice-title { font-size: 2.2rem; }
+}
+
+/* ===== HELLO KITTY BUTTON FACE ===== */
+.kitty-btn-face {
+    position: relative;
+    width: 70px;
+    height: 60px;
+}
+
+.kitty-btn-ear {
+    position: absolute;
+    width: 18px;
+    height: 22px;
+    background: white;
+    top: -10px;
+    border-radius: 50% 50% 0 0;
+}
+
+.kitty-btn-ear.left { left: 8px; transform: rotate(-10deg); }
+.kitty-btn-ear.right { right: 8px; transform: rotate(10deg); }
+
+.kitty-btn-eye {
+    position: absolute;
+    width: 6px;
+    height: 7px;
+    background: #333;
+    border-radius: 50%;
+    top: 22px;
+}
+
+.kitty-btn-eye.left { left: 18px; }
+.kitty-btn-eye.right { right: 18px; }
+
+.kitty-btn-nose {
+    position: absolute;
+    width: 6px;
+    height: 5px;
+    background: #ffb347;
+    border-radius: 50%;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.kitty-btn-whisker {
+    position: absolute;
+    width: 18px;
+    height: 1.5px;
+    background: rgba(255,255,255,0.7);
+}
+
+.kitty-btn-whisker.tl { left: -2px; top: 27px; transform: rotate(-8deg); }
+.kitty-btn-whisker.bl { left: -2px; top: 33px; transform: rotate(8deg); }
+.kitty-btn-whisker.tr { right: -2px; top: 27px; transform: rotate(8deg); }
+.kitty-btn-whisker.br { right: -2px; top: 33px; transform: rotate(-8deg); }
+
+.kitty-btn-bow {
+    position: absolute;
+    top: -6px;
+    right: 0px;
+    display: flex;
+    align-items: center;
+}
+
+.bow-l, .bow-r {
+    width: 10px;
+    height: 8px;
+    background: #ff4081;
+    border-radius: 50%;
+}
+
+.bow-l { transform: rotate(-15deg); }
+.bow-r { transform: rotate(15deg); }
+
+.bow-c {
+    width: 6px;
+    height: 6px;
+    background: #c2185b;
+    border-radius: 50%;
+    margin: 0 -2px;
+    z-index: 1;
+}
+
+/* ===== SPARKLES ===== */
+.sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ffb6c1;
+    border-radius: 50%;
+    animation: sparkleAnim 3s linear infinite;
+}
+
+@keyframes sparkleAnim {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    padding: 60px 20px;
+    background: linear-gradient(180deg, #fff0f5, #ffe0ec);
+    text-align: center;
+}
+
+.footer p {
+    font-size: 1.1rem;
+    color: #8a6070;
+    margin-bottom: 8px;
+}
+
+.footer-small {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem !important;
+    color: #e75480 !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .letter {
+        padding: 35px 25px;
+    }
+
+    .reasons-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .usahana {
+        transform: scale(0.85);
+    }
+
+    .sign-board {
+        min-width: 280px;
+        padding: 30px 20px 25px;
+    }
+
+    .sign-title {
+        font-size: 1.8rem;
+    }
+}

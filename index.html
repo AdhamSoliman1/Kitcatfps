@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You, Kitcatfps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Floating Hearts Background -->
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <!-- PASSWORD SCREEN -->
+    <div class="screen" id="passwordScreen">
+        <div class="password-scene">
+            <!-- Usahana Character -->
+            <div class="usahana">
+                <!-- Ears -->
+                <div class="usa-ear left">
+                    <div class="usa-ear-inner"></div>
+                </div>
+                <div class="usa-ear right">
+                    <div class="usa-ear-inner"></div>
+                </div>
+                <!-- Head -->
+                <div class="usa-head">
+                    <!-- Flower Crown -->
+                    <div class="usa-flower-crown">
+                        <div class="usa-flower f1">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
+                        <div class="usa-flower f2">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
+                        <div class="usa-flower f3">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
+                    </div>
+                    <!-- Face -->
+                    <div class="usa-eye left"></div>
+                    <div class="usa-eye right"></div>
+                    <div class="usa-blush left"></div>
+                    <div class="usa-blush right"></div>
+                    <div class="usa-nose"></div>
+                    <div class="usa-mouth"></div>
+                </div>
+                <!-- Body -->
+                <div class="usa-body">
+                    <!-- Arms holding sign -->
+                    <div class="usa-arm left"></div>
+                    <div class="usa-arm right"></div>
+                    <!-- Tutu -->
+                    <div class="usa-tutu"></div>
+                    <!-- Legs -->
+                    <div class="usa-leg left"></div>
+                    <div class="usa-leg right"></div>
+                </div>
+            </div>
+
+            <!-- Speech bubble -->
+            <div class="usa-speech">
+                <span style="transition: opacity 0.3s;">Hey! Password first~</span>
+            </div>
+
+            <!-- Sign held by Usahana -->
+            <div class="password-sign">
+                <div class="sign-post left"></div>
+                <div class="sign-post right"></div>
+                <div class="sign-board">
+                    <div class="sign-flower-deco left">
+                        <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                        <div class="flower-center"></div>
+                    </div>
+                    <div class="sign-flower-deco right">
+                        <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                        <div class="flower-center"></div>
+                    </div>
+                    <h1 class="sign-title">Password</h1>
+                    <div class="input-wrapper">
+                        <input type="password" id="passwordInput" placeholder="Enter password..." autocomplete="off">
+                        <button id="submitBtn" onclick="checkPassword()">
+                            <div class="hk-btn">
+                                <div class="hk-btn-ear-l"></div>
+                                <div class="hk-btn-ear-r"></div>
+                                <div class="hk-btn-eye-l"></div>
+                                <div class="hk-btn-eye-r"></div>
+                                <div class="hk-btn-nose"></div>
+                                <div class="hk-btn-wh-tl"></div>
+                                <div class="hk-btn-wh-bl"></div>
+                                <div class="hk-btn-wh-tr"></div>
+                                <div class="hk-btn-wh-br"></div>
+                                <div class="hk-btn-bow">
+                                    <div class="hkb-l"></div>
+                                    <div class="hkb-c"></div>
+                                    <div class="hkb-r"></div>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                    <p class="error-msg" id="errorMsg">That's not it... try again!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BEAT UP ADHAM SCREEN -->
+    <div class="screen hidden" id="beatScreen">
+        <div class="beat-container">
+            <!-- Back button -->
+            <button class="back-btn" onclick="goBack('password')">&larr;</button>
+
+            <!-- Maria button top right -->
+            <div class="maria-btn-fixed" onclick="selectWeapon('maria', this); attackAdham();">
+                <div class="maria-flag">&#127464;&#127473;</div>
+                <span>Maria</span>
+            </div>
+
+            <!-- Header -->
+            <h1 class="beat-header">Let your anger out on me I deserve it</h1>
+            <p class="beat-subheader">(must hit me a couple times to continue)</p>
+
+            <!-- Hit counter -->
+            <div class="hit-counter">Hits: <span id="hitCount">0</span> / 20</div>
+
+            <!-- Adham Character Area -->
+            <div class="adham-area">
+                <!-- Reaction text -->
+                <div class="reaction-text" id="reactionText"></div>
+
+                <!-- Damage effects (stars, etc) -->
+                <div class="damage-effects" id="damageEffects"></div>
+
+                <!-- Adham character -->
+                <div class="adham-character" id="adhamCharacter" onclick="attackAdham()">
+                    <!-- Hair -->
+                    <div class="adham-hair"></div>
+                    <!-- Head -->
+                    <div class="adham-head">
+                        <div class="adham-eyebrow left"></div>
+                        <div class="adham-eyebrow right"></div>
+                        <div class="adham-eye left">
+                            <div class="adham-pupil"></div>
+                        </div>
+                        <div class="adham-eye right">
+                            <div class="adham-pupil"></div>
+                        </div>
+                        <div class="adham-nose" id="adhamNose"></div>
+                        <div class="adham-mouth" id="adhamMouth"></div>
+                        <div class="adham-tears" id="adhamTears"></div>
+                        <!-- Damage overlays -->
+                        <div class="dmg dmg-bruise1"></div>
+                        <div class="dmg dmg-bruise2"></div>
+                        <div class="dmg dmg-bruise3"></div>
+                        <div class="dmg dmg-blackeye-l"></div>
+                        <div class="dmg dmg-blackeye-r"></div>
+                        <div class="dmg dmg-bandage1"></div>
+                        <div class="dmg dmg-bandage2"></div>
+                        <div class="dmg dmg-bump1"></div>
+                        <div class="dmg dmg-bump2"></div>
+                        <div class="dmg dmg-cut1"></div>
+                        <div class="dmg dmg-cut2"></div>
+                        <div class="dmg dmg-swollen"></div>
+                        <div class="dmg dmg-nosebleed"></div>
+                        <div class="dmg dmg-xeye-l"></div>
+                        <div class="dmg dmg-xeye-r"></div>
+                        <div class="dmg dmg-bandage-wrap"></div>
+                        <div class="dmg dmg-tooth"></div>
+                    </div>
+                    <!-- Body -->
+                    <div class="adham-body" id="adhamBody">
+                        <div class="adham-torso" id="adhamTorso"></div>
+                        <div class="adham-arm-left" id="adhamArmL"></div>
+                        <div class="adham-arm-right" id="adhamArmR"></div>
+                        <div class="adham-leg-left"></div>
+                        <div class="adham-leg-right"></div>
+                        <!-- Body damage -->
+                        <div class="dmg dmg-body-bruise1"></div>
+                        <div class="dmg dmg-body-bruise2"></div>
+                        <div class="dmg dmg-arm-bandage"></div>
+                        <div class="dmg dmg-shirt-rip"></div>
+                    </div>
+                    <!-- Name tag -->
+                    <div class="adham-name">Adham</div>
+                </div>
+            </div>
+
+            <!-- Weapon Toolbar -->
+            <div class="weapon-toolbar">
+                <div class="weapon-item active" data-weapon="bat" onclick="selectWeapon('bat', this)">
+                    <div class="weapon-icon">&#127951;</div>
+                    <span>Baseball Bat</span>
+                </div>
+                <div class="weapon-item" data-weapon="gloves" onclick="selectWeapon('gloves', this)">
+                    <div class="weapon-icon">&#129354;</div>
+                    <span>Boxing Gloves</span>
+                </div>
+                <div class="weapon-item" data-weapon="knuckles" onclick="selectWeapon('knuckles', this)">
+                    <div class="weapon-icon knuckles-icon">
+                        <svg viewBox="0 0 40 28" width="40" height="28">
+                            <rect x="2" y="16" width="36" height="7" rx="3" fill="#c8a020"/>
+                            <rect x="2" y="21" width="36" height="5" rx="2" fill="#a08000"/>
+                            <circle cx="7" cy="13" r="5" fill="none" stroke="#c8a020" stroke-width="3.5"/>
+                            <circle cx="16" cy="10" r="5.5" fill="none" stroke="#c8a020" stroke-width="3.5"/>
+                            <circle cx="26" cy="10" r="5.5" fill="none" stroke="#c8a020" stroke-width="3.5"/>
+                            <circle cx="35" cy="13" r="4.5" fill="none" stroke="#c8a020" stroke-width="3.5"/>
+                        </svg>
+                    </div>
+                    <span>Brass Knuckles</span>
+                </div>
+                <div class="weapon-item" data-weapon="hellokitty" onclick="selectWeapon('hellokitty', this)">
+                    <div class="weapon-icon">&#128049;</div>
+                    <span>Hello Kitty</span>
+                </div>
+                <div class="weapon-item pickup-btn" data-weapon="pickup" onclick="selectWeapon('pickup', this)">
+                    <div class="weapon-icon">&#9995;</div>
+                    <span>Pick Up</span>
+                </div>
+            </div>
+
+            <!-- Continue Button -->
+            <button class="continue-btn disabled" id="continueBtn" onclick="continueToLetter()">
+                Continue &hearts;
+            </button>
+        </div>
+    </div>
+
+    <!-- PLEASE READ LETTER SCREEN -->
+    <div class="screen hidden" id="letterScreen">
+        <div class="please-read-container">
+            <button class="back-btn" onclick="goBack('beat')">&larr;</button>
+            <h1 class="please-read-title">Please Read</h1>
+            <div class="please-read-letter">
+                <p>Maria... I don't even know how to put into words how sorry I am.</p>
+
+                <p>I hate myself for letting my anger hurt you. You didn't deserve any of it, and the fact that I caused you so much pain is something that's been tearing me apart. I keep replaying everything in my head, wishing I could take it all back, wishing i beat myself before talking to you, wishing i can go to the old me and break him like he broke you.</p>
+
+                <p>You mean so much to me, more than my pride, more than my anger, more than my ego, more than anything and everything, and I still managed to hurt you. That kills me.
+                I'm so sorry, Maria. Truly.</p>
+
+                <p>I'd do anything to undo what I did. But I can't, I can't undo the past, I can promise you i changed, i can promise you ill do anything to make you happy, but the truth is you hate me now, you despise the idea of me and i deserve it. i just wish i can really show you how sorry i am.</p>
+
+                <p>I wish i can close my eyes and open and see you text me again but i know it wont happen, i know you dont trust me, and even though on everyones life i truly love you and i truly didnt mean anything bad i did nothing will change your feelings but you. so if you somehow have part of you that still cares about me, your adham, your simp, your... please come talk to me. I'm breaking everyday without you. please</p>
+
+                <p>I don't expect you to forgive me... I just needed you to know how deeply I regret hurting someone who means everything to me, you're everything for me maria.</p>
+
+                <p class="letter-sign-off">- Adham</p>
+            </div>
+            <button class="continue-btn enabled" id="letterContinueBtn" onclick="continueToFinal()">
+                Continue &hearts;
+            </button>
+        </div>
+    </div>
+
+    <!-- FINAL SCREEN -->
+    <div class="screen hidden" id="finalScreen">
+        <div class="final-container">
+            <button class="back-btn" onclick="goBack('letter')">&larr;</button>
+            <div class="final-image-wrapper">
+                <img src="snowglobe.jpg" alt="Us" class="final-image">
+            </div>
+            <div class="final-message">
+                <p>I know you probably will never forgive me, and i know you prob already moved on, and hate me or whatever it is, i just wanna say im sorry, and even if you never forgive me, i still care and love you maria, please allow me to give you youre labubus (yes more than one) then you can block me again and never interact with me, but if you somehow somehow somehow find a little place in youre beautiful heart send me hi or anything on messages, and ill die from happiness.</p>
+            </div>
+            <p class="final-sign-off">Forever yours, Adham &hearts;</p>
+            <button class="continue-btn enabled" id="finalContinueBtn" onclick="goToChoice()">
+                Continue &hearts;
+            </button>
+        </div>
+    </div>
+
+    <!-- CHOICE SCREEN -->
+    <div class="screen hidden" id="choiceScreen">
+        <div class="choice-container">
+            <button class="back-btn" onclick="goBack('final')">&larr;</button>
+            <h1 class="choice-title">One last thing...</h1>
+            <p class="choice-subtitle">Pick one</p>
+            <div class="choice-buttons">
+                <button class="choice-btn everything-btn" onclick="pickChoice('everything')">
+                    <span class="choice-emoji">&hearts;</span>
+                    <span class="choice-label">My Everything</span>
+                </button>
+                <button class="choice-btn sudoku-btn" onclick="pickChoice('sudoku')">
+                    <span class="choice-emoji">&#129513;</span>
+                    <span class="choice-label">Sudoku</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="screen hidden" id="mainContent">
+        <button class="back-btn back-btn-light" onclick="goBack('choice')">&larr;</button>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title fade-in">Dear <span class="highlight">Kitcatfps</span>,</h1>
+                <p class="hero-subtitle fade-in delay-1">I made this little corner of the internet just for you.</p>
+                <div class="scroll-hint fade-in delay-2">
+                    <span>Scroll down</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
+            <div class="sparkles" id="sparkles"></div>
+        </section>
+
+        <!-- Reasons Section -->
+        <section class="reasons-section">
+            <h2 class="section-title">Why You're So Special To Me</h2>
+            <div class="reasons-grid">
+                <div class="reason-card reveal">
+                    <div class="reason-icon">&#10084;</div>
+                    <h3>Your Smile</h3>
+                    <p>Every time you smile, my whole world lights up. Everytime i hear that adorable giggle of yours it melts my heart</p>
+                </div>
+                <div class="reason-card reveal">
+                    <div class="reason-icon">&#9733;</div>
+                    <h3>Your Laugh</h3>
+                    <p>Your laugh is my favorite sound in the entire world. I'd do anything just to hear it.</p>
+                </div>
+                <div class="reason-card reveal">
+                    <div class="reason-icon">&#10047;</div>
+                    <h3>Your Kindness</h3>
+                    <p>The way you care about others shows what an amazing person you are inside and out.</p>
+                </div>
+                <div class="reason-card reveal">
+                    <div class="reason-icon">&#9829;</div>
+                    <h3>Just Being You</h3>
+                    <p>You don't have to try to be special — you already are. Everything about you is perfect to me.</p>
+                </div>
+                <div class="reason-card reveal">
+                    <div class="reason-icon">&#127800;</div>
+                    <h3>Your Strength</h3>
+                    <p>You're stronger than you know. The way you handle everything inspires me every single day.</p>
+                </div>
+                <div class="reason-card reveal">
+                    <div class="reason-icon">&#128156;</div>
+                    <h3>Our Moments</h3>
+                    <p>Every moment I spend with you becomes my new favorite memory. I treasure them all.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Love Letter Section -->
+        <section class="letter-section">
+            <div class="letter-envelope reveal">
+                <div class="letter">
+                    <div class="letter-header">
+                        <div class="mini-bow">
+                            <div class="bow-loop left"></div>
+                            <div class="bow-center"></div>
+                            <div class="bow-loop right"></div>
+                        </div>
+                    </div>
+                    <h2>A Little Letter For You</h2>
+                    <p>
+                        Hey Kitcatfps,
+                    </p>
+                    <p>
+                        I don't always know how to say what I feel, so I made this instead.
+                        You mean more to me than words could ever explain. Every day without you
+                        feels like hell on earth, but with you i felt like i was the king of this universe.
+                    </p>
+                    <p>
+                        You make the ordinary feel extraordinary. You melt me everytime im with you,
+                        You make the hard days feel like nothing and the good days unforgettable.
+                        I hope you never forget how incredible you are and never forget me.
+                    </p>
+                    <p>
+                        I care about you more than you'll ever know. And I just wanted
+                        you to see it, right here, in your own little place on the internet.
+                        I love you Maria Salman. I am sorry for everything and please one day come to me.
+                        I'll wait to the end of the world for you. When you said "what does love mean"
+                        this maria, what I'm doing everyday, how i feel towards you, how i never stopped
+                        caring, thats what true love is. Come back to your Adham, Your safe place.
+                    </p>
+                    <p class="letter-signature">
+                        Forever yours &hearts;
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Section -->
+        <section class="interactive-section">
+            <h2 class="section-title reveal">Click the Heart</h2>
+            <div class="big-heart-container reveal">
+                <div class="big-heart" id="bigHeart" onclick="burstHearts()">
+                    <div class="kitty-btn-face">
+                        <div class="kitty-btn-ear left"></div>
+                        <div class="kitty-btn-ear right"></div>
+                        <div class="kitty-btn-eye left"></div>
+                        <div class="kitty-btn-eye right"></div>
+                        <div class="kitty-btn-nose"></div>
+                        <div class="kitty-btn-whisker tl"></div>
+                        <div class="kitty-btn-whisker bl"></div>
+                        <div class="kitty-btn-whisker tr"></div>
+                        <div class="kitty-btn-whisker br"></div>
+                        <div class="kitty-btn-bow">
+                            <div class="bow-l"></div>
+                            <div class="bow-c"></div>
+                            <div class="bow-r"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="burst-container" id="burstContainer"></div>
+            </div>
+            <p class="interactive-text reveal" id="heartCounter">Click it and see what happens!</p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-kitty">
+                <div class="kitty-face small">
+                    <div class="kitty-ear left"></div>
+                    <div class="kitty-ear right"></div>
+                    <div class="kitty-head">
+                        <div class="kitty-eye left"></div>
+                        <div class="kitty-eye right"></div>
+                        <div class="kitty-nose"></div>
+                        <div class="kitty-whisker top-left"></div>
+                        <div class="kitty-whisker bottom-left"></div>
+                        <div class="kitty-whisker top-right"></div>
+                        <div class="kitty-whisker bottom-right"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Made with all my &hearts; for <span class="highlight">Kitcatfps</span></p>
+            <p class="footer-small">You're my everything.</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
